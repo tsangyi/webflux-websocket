@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea id="msgBoxs"></textarea><br>
+待发送消息：<input type="text" id="msg"><input type="button" id="sendBtn" onclick="send()" value="发送">
+<script type="application/javascript">
+    var msgBoxs = document.getElementById("msgBoxs")
+    var msgBox = document.getElementById("msg")
+    document.cookie="token2=John Doe";
+    var ws = new WebSocket("ws://localhost:9000/hello?token=aabb123&demo=1&userType=0")
+    ws.onopen = function (evt) {
+        console.log("Connection open ...");
+        ws.send("Hello WebSocket!");
+    }
+
+    ws.onmessage = function (evt) {
+        console.log("Received Message: ", evt.data)
+        var msgs = msgBoxs.value
+        msgBoxs.innerText = msgs + "\n" + evt.data
+        msgBoxs.scrollTop = msgBoxs.scrollHeight;
+    }
+
+    ws.onclose = function (evt) {
+        console.log("Connect closed.");
+    }
+
+
+
+    function send() {
+        var msg = msgBox.value
+        ws.send(msg)
+        msgBox.value = ""
+    }
+</script>
+</body>
+</html>
