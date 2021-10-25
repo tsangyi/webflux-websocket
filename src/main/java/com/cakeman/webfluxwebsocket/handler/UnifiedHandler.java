@@ -47,6 +47,7 @@ public class UnifiedHandler implements WebSocketHandler, CorsConfigurationSource
                     //执行使用消息内容的嵌套异步操作
                     String msg = mapper.getPayloadAsText();
                     System.out.println("mapper: " + msg);
+                    System.out.println("session-code: " + session.hashCode());
                     return Flux.just(msg);
                 })
                 .map(value -> {
