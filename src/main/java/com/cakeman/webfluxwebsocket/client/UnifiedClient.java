@@ -1,7 +1,9 @@
 package com.cakeman.webfluxwebsocket.client;
 
 
+import com.cakeman.webfluxwebsocket.enums.ClientTagEnum;
 import com.cakeman.webfluxwebsocket.handler.WebSocketSessionHandler;
+import com.cakeman.webfluxwebsocket.msg.RedisTagConstant;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @BelongsPackage: com.yycx.viop.socket.client
- * @Author: zsx
- * @CreateTime: 2020-03-23 11:56
- * @Description:
+ * @author xzy
+ * @description
+ * @date 2021/10/26
  */
 @Component
 public class UnifiedClient implements SocketClient {
@@ -24,11 +25,10 @@ public class UnifiedClient implements SocketClient {
     private static BiMap<String, WebSocketSession> clientSessionCache = HashBiMap.create();
 
     @Autowired
-    private DeliveryServiceBeanFactory deliveryServiceBeanFactory;
-    @Autowired
-    private RedisUtil redisUtil;
-    @Autowired
-    private IssueRPCServerConfig rpcServerConfig;
+    private SocketHandleGatewayImpl socketHandleGateway;
+
+//    @Autowired
+//    private RedisService redisService;
 
 
     private String getCacheKey(ClientTagEnum clientTag, String uniqueId) {
@@ -52,7 +52,7 @@ public class UnifiedClient implements SocketClient {
         }
         clientCache.put(getCacheKey(clientTag, uniqueId), sessionHandler);
         clientSessionCache.put(getCacheKey(clientTag, uniqueId), sessionHandler.getSession());
-        redisUtil.setValue(getRedisKey(clientTag, uniqueId), IPUtil.getLocalIPAddress() + ":" + rpcServerConfig.getPort());
+//        redisService.set(getRedisKey(clientTag, uniqueId), IPUtil.getLocalIPAddress() + ":" + rpcServerConfig.getPort());
     }
 
     @Override
@@ -79,18 +79,12 @@ public class UnifiedClient implements SocketClient {
         }
         clientCache.remove(cacheKey);
         clientSessionCache.remove(cacheKey);
-        redisUtil.delValue(cacheKey2RedisKey(cacheKey));
-        String[] info = cacheKey.split("_");
-        if (info[0].equals(ClientTagEnum.DRIVER.getClientTag())) {
-            DeliveryService deliveryService = deliveryServiceBeanFactory.getService(SocketMsgTypeEnum.EXPRESS_LISTEN_SINGLE);
-            JsonObject content = new JsonObject();
-            content.addProperty("isOpen", "false");
-            deliveryService.handle(info[1], content);
-        }
+//        redisService.delete(cacheKey2RedisKey(cacheKey));
     }
 
     @Override
     public String getHost(ClientTagEnum clientTag, String uniqueId) {
-        return redisUtil.getValue(getRedisKey(clientTag, uniqueId));
+//        return redisService.get(getRedisKey(clientTag, uniqueId)).toString();
+        return uniqueId;
     }
 }

@@ -10,10 +10,9 @@ import reactor.netty.channel.AbortedException;
 import java.nio.channels.ClosedChannelException;
 
 /**
- * @BelongsPackage: com.yycx.viop.socket.handler
- * @Author: zsx
- * @CreateTime: 2020-03-23 11:56
- * @Description: socket通道处理基类
+ * @author xzy
+ * @description WebSocketSession处理器
+ * @date 2021/10/26
  */
 public abstract class WebSocketSessionHandler {
 
@@ -41,7 +40,7 @@ public abstract class WebSocketSessionHandler {
 		).doOnNext(textMessage -> {
 			customHandle(textMessage);
 			receiveProcessor.onNext(textMessage);
-		}).doOnComplete(() -> 
+		}).doOnComplete(() ->
 			receiveProcessor.onComplete()
 		);
 
@@ -57,7 +56,7 @@ public abstract class WebSocketSessionHandler {
 
 		return connected.thenMany(receive).then(disconnected).then();
 	}
-	
+
 	/**
 	 * 自定义消息处理
 	 * @param message
@@ -79,7 +78,7 @@ public abstract class WebSocketSessionHandler {
 	public Flux<String> receive() {
 		return receiveProcessor;
 	}
-	
+
 	public WebSocketSession getSession() {
 		return session;
 	}
