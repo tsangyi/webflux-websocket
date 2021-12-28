@@ -1,4 +1,4 @@
-package com.cakeman.webfluxwebsocket.Service;
+package com.cakeman.webfluxwebsocket.service;
 
 
 import org.springframework.stereotype.Service;

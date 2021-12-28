@@ -4,6 +4,7 @@ package com.cakeman.webfluxwebsocket.client;
 import com.cakeman.webfluxwebsocket.enums.ClientTagEnum;
 import com.cakeman.webfluxwebsocket.handler.WebSocketSessionHandler;
 import com.cakeman.webfluxwebsocket.msg.RedisTagConstant;
+import com.cakeman.webfluxwebsocket.service.impl.SocketHandleServiceImpl;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UnifiedClient implements SocketClient {
     private static BiMap<String, WebSocketSession> clientSessionCache = HashBiMap.create();
 
     @Autowired
-    private SocketHandleGatewayImpl socketHandleGateway;
+    private SocketHandleServiceImpl socketHandleGateway;
 
 //    @Autowired
 //    private RedisService redisService;

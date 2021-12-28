@@ -1,7 +1,8 @@
 package com.cakeman.webfluxwebsocket.client;
 
-import com.huayue.websocket.enums.socket.ClientTagEnum;
-import com.huayue.websocket.socket.handler.WebSocketSessionHandler;
+
+import com.cakeman.webfluxwebsocket.enums.ClientTagEnum;
+import com.cakeman.webfluxwebsocket.handler.WebSocketSessionHandler;
 import org.springframework.web.reactive.socket.WebSocketSession;
 
 import java.util.List;
