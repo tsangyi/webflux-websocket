@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cakeman.webfluxwebsocket.client.UnifiedClient;
 import com.cakeman.webfluxwebsocket.enums.ClientTagEnum;
+import com.cakeman.webfluxwebsocket.enums.SocketMsgTypeEnum;
 import com.cakeman.webfluxwebsocket.msg.RedisTagConstant;
 import com.cakeman.webfluxwebsocket.msg.ReplySocketMsg;
 import lombok.extern.slf4j.Slf4j;
@@ -121,12 +122,12 @@ public class UnifiedHandler implements WebSocketHandler {
                     this.send(JSON.toJSONString(ReplySocketMsg.failure("uniqueId不能为空")));
                     return;
                 }
-                com.huayue.websocket.enums.socket.SocketMsgTypeEnum msgTypeEnum = com.huayue.websocket.enums.socket.SocketMsgTypeEnum.getByCode(msgType);
+                SocketMsgTypeEnum msgTypeEnum = SocketMsgTypeEnum.getByCode(msgType);
                 if (null == msgTypeEnum) {
                     this.send(JSON.toJSONString(ReplySocketMsg.failure("非法的msgType")));
                     return;
                 }
-                if (com.huayue.websocket.enums.socket.SocketMsgTypeEnum.USER_REGISTER.equals(msgTypeEnum)) {
+                if (SocketMsgTypeEnum.USER_REGISTER.equals(msgTypeEnum)) {
                     if (!isAccess(clientTagEnum, uniqueId)) {
                         this.send(JSON.toJSONString(ReplySocketMsg.failure("请先获取准入许可方可建立连接并通信")));
                         return;

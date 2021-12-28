@@ -1,4 +1,5 @@
-package com.huayue.websocket.enums.socket;
+package com.cakeman.webfluxwebsocket.enums;
+
 
 /**
  * @author xzy
