@@ -1,7 +1,7 @@
 package com.cakeman.webfluxwebsocket.enums;
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description 客户端类型
  * @date 2021/10/26
  */

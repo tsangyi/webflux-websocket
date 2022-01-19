@@ -8,7 +8,7 @@ import org.springframework.web.reactive.socket.WebSocketSession;
 import java.util.List;
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description socket通道处理接口
  * @date 2021/10/29
  */

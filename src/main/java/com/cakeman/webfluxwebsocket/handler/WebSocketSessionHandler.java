@@ -10,7 +10,7 @@ import reactor.netty.channel.AbortedException;
 import java.nio.channels.ClosedChannelException;
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description WebSocketSession处理器
  * @date 2021/10/26
  */

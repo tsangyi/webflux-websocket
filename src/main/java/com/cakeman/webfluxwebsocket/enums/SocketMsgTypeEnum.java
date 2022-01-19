@@ -2,7 +2,7 @@ package com.cakeman.webfluxwebsocket.enums;
 
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description socket事件类型
  * @date 2021/10/26
  */

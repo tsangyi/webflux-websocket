@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description 返回回复socket消息
  * @date 2021/10/26
  */

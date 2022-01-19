@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author xzy
+ * @author tsangyi
  * @description websocket配置
  * @date 2021/10/25
  */
