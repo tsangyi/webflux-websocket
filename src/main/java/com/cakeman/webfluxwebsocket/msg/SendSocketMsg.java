@@ -5,7 +5,7 @@ import lombok.Setter;
 
 /**
  * @author tsangyi
- * @description
+ * @description 发送socket消息体
  * @date 2021/10/26
  */
 @Setter
